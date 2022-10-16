@@ -1,8 +1,9 @@
 import random
 
+import pico2d
 from pico2d import *
 import game_framework
-import logo_state
+import title_state
 import item_state
 import add_state
 
@@ -38,7 +39,7 @@ class Boy:
         if self.item == 'Ball':
             self.ball_image.draw(self.x+10, self.y+50)
         if self.item == 'BigBall':
-            self.big_ball_image.draw(self.x + 10, self.y + 60)
+            self.big_ball_image.draw(self.x + 10, self.y + 50)
 
         if self.dir == 1:
             self.image.clip_draw(self.frame*100, 100, 100, 100, self.x, self.y)
@@ -55,7 +56,7 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
-                game_framework.quit()
+                game_framework.change_state(title_state)
             elif event.key == SDLK_i:
                 game_framework.push_state(item_state)
             elif event.key == SDLK_b:
@@ -103,6 +104,11 @@ def pause():
 def resume():
     pass
 
+def test_self():
+    import sys
+    pico2d.open_canvas()
+    game_framework.run(sys.modules['__main__'])
+    pico2d.clear_canvas()
 
-
-
+if __name__ == '__main__':
+    test_self()

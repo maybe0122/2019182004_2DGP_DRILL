@@ -42,3 +42,9 @@ def handle_events():
                     for play_state.boy in play_state.boys:
                         play_state.boy.item = 'BigBall'
                     game_framework.pop_state()
+
+def pause():
+    pass
+
+def resume():
+    pass

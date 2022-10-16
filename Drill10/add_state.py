@@ -39,3 +39,9 @@ def handle_events():
                         play_state.boys.pop()
                         play_state.count -= 1
                     game_framework.pop_state()
+
+def pause():
+    pass
+
+def resume():
+    pass
