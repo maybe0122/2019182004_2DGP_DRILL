@@ -1,6 +1,5 @@
 import random
 
-import pico2d
 from pico2d import *
 import game_framework
 import title_state
@@ -63,14 +62,16 @@ def handle_events():
                 game_framework.push_state(add_state)
 
 
-boys = []    # c로 따지믄 NULL
+boys = None    # c로 따지믄 NULL
 grass = None
 running = True
-count = 0
+count = None
 
 # 초기화
 def enter():
     global boys, grass, running, count
+    boys = []           # initialize boys
+    count = 0           # initialize count
     boys += [Boy()]
     count += 1
     grass = Grass()

@@ -22,8 +22,6 @@ def handle_events():
             if event.key == SDLK_ESCAPE:
                 game_framework.quit()
             elif event.key == SDLK_SPACE:
-                play_state.boys = []
-                play_state.count = 0
                 game_framework.change_state(play_state)
 
 def draw():
