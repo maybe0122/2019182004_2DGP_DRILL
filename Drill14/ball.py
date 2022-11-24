@@ -4,7 +4,6 @@ from pico2d import *
 
 import game_world
 import server
-from background import FixedBackground as bg
 
 class Ball:
     image = None
@@ -13,11 +12,15 @@ class Ball:
         if Ball.image == None:
             Ball.image = load_image('ball21x21.png')
 
-        self.x = random.randint(0, 1837)
-        self.y = random.randint(0, 1109)
+        self.x = random.randint(0, server.background.w)
+        self.y = random.randint(0, server.background.h)
 
     def draw(self):
-        self.image.draw(self.x, self.y)
+        sx = self.x - server.background.window_left
+        sy = self.y - server.background.window_bottom
+
+        self.image.draw(sx, sy)
+        draw_rectangle(*self.get_bb())
 
     def update(self):
         pass
@@ -27,4 +30,5 @@ class Ball:
             game_world.remove_object(self)
 
     def get_bb(self):
-        return self.x - 11, self.y - 11, self.x + 11, self.y + 11
+        return self.x - server.background.window_left - 11, self.y - server.background.window_bottom - 11, \
+               self.x - server.background.window_left + 11, self.y - server.background.window_bottom + 11

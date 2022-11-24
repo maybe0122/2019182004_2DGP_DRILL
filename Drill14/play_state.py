@@ -16,13 +16,12 @@ from background import FixedBackground as Background
 
 import server
 
-
 def enter():
-    server.boy = Boy()
-    game_world.add_object(server.boy, 1)
-
     server.background = Background()
     game_world.add_object(server.background, 0)
+
+    server.boy = Boy()
+    game_world.add_object(server.boy, 1)
 
     server.ball = [Ball() for _ in range(100)]
     game_world.add_objects(server.ball, 1)

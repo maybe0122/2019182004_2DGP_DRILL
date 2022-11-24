@@ -99,8 +99,9 @@ class WalkingState:
 
 
 next_state_table = {
-    WalkingState: {RIGHTKEY_UP: WalkingState, LEFTKEY_UP: WalkingState, RIGHTKEY_DOWN: WalkingState, LEFTKEY_DOWN: WalkingState,
-                UPKEY_UP: WalkingState, UPKEY_DOWN: WalkingState, DOWNKEY_UP: WalkingState, DOWNKEY_DOWN: WalkingState}
+    WalkingState: {RIGHTKEY_UP: WalkingState, LEFTKEY_UP: WalkingState, RIGHTKEY_DOWN: WalkingState,
+                   LEFTKEY_DOWN: WalkingState, UPKEY_UP: WalkingState, UPKEY_DOWN: WalkingState,
+                   DOWNKEY_UP: WalkingState, DOWNKEY_DOWN: WalkingState}
 }
 
 
@@ -121,7 +122,7 @@ class Boy:
 
 
     def get_bb(self):
-        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
+        return self.x - server.background.window_left - 50, self.y - server.background.window_bottom - 50, self.x - server.background.window_left + 50, self.y - server.background.window_bottom + 50
 
 
     def set_background(self, bg):
@@ -144,6 +145,7 @@ class Boy:
 
     def draw(self):
         self.cur_state.draw(self)
+        draw_rectangle(*self.get_bb())
 
 
     def handle_event(self, event):
